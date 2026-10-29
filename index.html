@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -335,35 +335,6 @@
       margin-bottom: 12px;
     }
 
-    .giving-box {
-      max-width: 720px;
-      margin: auto;
-      background: white;
-      padding: 35px;
-      border-radius: 10px;
-      text-align: center;
-      border: 1px solid #e7e4dc;
-    }
-
-    .mpesa-number {
-      background: var(--cream);
-      color: var(--navy);
-      border: 1px dashed var(--gold);
-      border-radius: 6px;
-      padding: 15px;
-      margin: 20px 0;
-      font-size: 1.4rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      overflow-wrap: anywhere;
-    }
-
-    .notice {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-top: 15px;
-    }
-
     .contact-content {
       max-width: 700px;
       margin: auto;
@@ -372,6 +343,28 @@
 
     .contact-content p {
       margin-bottom: 15px;
+    }
+
+    .contact-card {
+      max-width: 550px;
+      margin: 22px auto 0;
+      padding: 28px;
+      background: var(--cream);
+      border: 1px solid #e7e4dc;
+      border-radius: 10px;
+      box-shadow: 0 5px 18px rgba(16, 39, 68, 0.05);
+    }
+
+    .contact-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .contact-number {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--navy);
+      overflow-wrap: anywhere;
     }
 
     footer {
@@ -450,12 +443,12 @@
       }
 
       .meeting-box,
-      .giving-box,
-      .leader-card {
+      .leader-card,
+      .contact-card {
         padding: 25px 20px;
       }
 
-      .mpesa-number {
+      .contact-number {
         font-size: 1.2rem;
       }
     }
@@ -488,7 +481,6 @@
         <a href="#teachings">Teachings</a>
         <a href="#fellowship">Fellowship</a>
         <a href="#leadership">Leadership</a>
-        <a href="#giving">Giving</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -684,87 +676,44 @@
       </div>
     </section>
 
-    <!-- GIVING -->
-    <section id="giving">
-      <div class="container">
-        <div class="section-title">
-          <p class="eyebrow">Support the Work</p>
-          <h2>Giving and Support</h2>
-          <p>
-            If you would like to support the work of Fellowship Table,
-            you may use the M-Pesa details below.
-          </p>
-        </div>
-
-        <div class="giving-box">
-          <div class="card-icon" aria-hidden="true">🙏</div>
-
-          <h3>Give via M-Pesa</h3>
-
-          <p>
-            Use the number below when sending your contribution.
-            Please confirm the recipient's name before completing
-            the transaction.
-          </p>
-
-          <div class="mpesa-number" id="mpesaNumber">
-            +254711736217
-          </div>
-
-          <button
-            class="btn btn-primary"
-            id="copyMpesa"
-            type="button"
-          >
-            Copy M-Pesa Number
-          </button>
-
-          <p class="notice" id="copyMessage" aria-live="polite">
-            This website displays giving details but does not process
-            payments. Complete transactions through M-Pesa.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
     <section class="light-section" id="contact">
       <div class="container">
         <div class="section-title">
           <p class="eyebrow">Get in Touch</p>
           <h2>Contact Fellowship Table</h2>
+          <p>
+            Connect with us and be part of the fellowship community.
+          </p>
         </div>
 
         <div class="contact-content">
-          <p>
-            Would you like to learn more about Fellowship Table or
-            participate in our weekly sessions? You are welcome to
-            join us online.
-          </p>
+          <div class="contact-card">
+            <div class="card-icon" aria-hidden="true">💬</div>
+            <h3>Join Our WhatsApp Fellowship</h3>
+            <p>
+              Join our WhatsApp group to connect with the fellowship
+              community and receive updates.
+            </p>
 
-          <p>
-            <strong>Weekly meetings:</strong> Tuesdays, 8:00 PM – 9:30 PM
-          </p>
-
-          <div class="buttons">
             <a
               class="btn btn-primary"
-              href="https://meet.google.com/ywz-cgdq-rsr"
+              href="https://chat.whatsapp.com/ElW250MXVbE5K78jcBtvob"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Our Meeting
+              Join WhatsApp Group
             </a>
+          </div>
 
-            <a
-              class="btn"
-              style="background: var(--navy); color: white;"
-              href="https://www.youtube.com/@ngetichvincent254"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visit Our YouTube
-            </a>
+          <div class="contact-card">
+            <div class="card-icon" aria-hidden="true">📞</div>
+            <h3>Contact</h3>
+            <p>
+              <a class="contact-number" href="tel:+254711736217">
+                +254 711 736 217
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -822,29 +771,7 @@
     // Display the current year automatically
     document.getElementById("year").textContent =
       new Date().getFullYear();
-
-    // Copy the M-Pesa number
-    document.getElementById("copyMpesa").addEventListener(
-      "click",
-      async function () {
-        const number = document
-          .getElementById("mpesaNumber")
-          .textContent
-          .trim();
-
-        const message = document.getElementById("copyMessage");
-
-        try {
-          await navigator.clipboard.writeText(number);
-          message.textContent = "M-Pesa number copied successfully.";
-        } catch (error) {
-          message.textContent =
-            "Please copy the number manually: " + number;
-        }
-      }
-    );
   </script>
 
 </body>
 </html>
-```
