@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Fellowship Table — For the Discipleship of the Nations. Bible teachings, sermons and fellowship with Vincent Ngetich.">
-
   <title>Fellowship Table | For the Discipleship of the Nations</title>
 
   <style>
@@ -43,7 +43,7 @@
 
     header {
       background: var(--navy);
-      color: var(--white);
+      color: white;
       padding: 16px 7%;
       display: flex;
       justify-content: space-between;
@@ -84,13 +84,17 @@
       color: var(--gold-light);
     }
 
+    section {
+      padding: 75px 7%;
+      scroll-margin-top: 20px;
+    }
+
     .hero {
       min-height: 510px;
       padding: 90px 7%;
       display: flex;
       align-items: center;
-      background:
-        linear-gradient(110deg, rgba(7,27,53,0.98), rgba(16,43,76,0.88));
+      background: linear-gradient(110deg, rgba(7,27,53,0.98), rgba(16,43,76,0.88));
       color: white;
     }
 
@@ -163,11 +167,6 @@
     .btn-outline:hover {
       background: var(--gold);
       color: var(--navy);
-    }
-
-    section {
-      padding: 75px 7%;
-      scroll-margin-top: 20px;
     }
 
     .section-heading {
@@ -370,6 +369,104 @@
       display: none;
     }
 
+    .no-results {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      padding: 25px;
+      grid-column: 1 / -1;
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      background: white;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .gallery-item {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      background: var(--cream);
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-caption {
+      padding: 10px 5px 5px;
+      text-align: center;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    /* ENLARGED PHOTO VIEWER */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(3, 12, 25, 0.94);
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 1000px;
+      max-height: 90vh;
+      text-align: center;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border: 3px solid var(--gold);
+      border-radius: 8px;
+    }
+
+    .lightbox-caption {
+      color: white;
+      margin-top: 12px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: white;
+      background: transparent;
+      border: none;
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+
     .leader-section {
       background: white;
     }
@@ -504,14 +601,6 @@
       color: var(--gold-light);
     }
 
-    .no-results {
-      display: none;
-      text-align: center;
-      color: var(--muted);
-      padding: 25px;
-      grid-column: 1 / -1;
-    }
-
     @media (max-width: 850px) {
       header {
         justify-content: center;
@@ -530,6 +619,10 @@
 
       .teaching-grid,
       .fellowship-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -563,7 +656,8 @@
       .teaching-grid,
       .fellowship-details,
       .sermon-list,
-      .library-tools {
+      .library-tools,
+      .gallery-grid {
         grid-template-columns: 1fr;
       }
 
@@ -577,6 +671,10 @@
         height: 350px;
       }
 
+      .gallery-item img {
+        height: 280px;
+      }
+
       .buttons .btn {
         width: 100%;
       }
@@ -586,7 +684,7 @@
 
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER AND NAVIGATION -->
   <header>
     <a class="brand" href="#home">
       FELLOWSHIP TABLE
@@ -598,14 +696,16 @@
       <a href="#about">About</a>
       <a href="#teachings">Teachings</a>
       <a href="#sermons">Sermons</a>
+      <a href="#gallery">Gallery</a>
       <a href="#leader">Our Leader</a>
       <a href="#fellowship">Fellowship</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- HOME -->
   <main>
+
+    <!-- HOME -->
     <section class="hero" id="home">
       <div class="hero-content">
         <p class="eyebrow">Welcome to Fellowship Table</p>
@@ -622,12 +722,9 @@
         </p>
 
         <div class="buttons">
-          <a
-            class="btn btn-gold"
-            href="https://chat.whatsapp.com/ElW250MXVbE5K78jcBtvob"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://chat.whatsapp.com/ElW250MXVbE5K78jcBtvob"
+             target="_blank" rel="noopener noreferrer">
             Join Our Fellowship
           </a>
 
@@ -697,7 +794,6 @@
       </div>
 
       <div class="teaching-grid">
-
         <article class="teaching-card">
           <span class="number">SERIES 01</span>
           <h3>Romans</h3>
@@ -733,17 +829,14 @@
             Explore Teachings →
           </a>
         </article>
-
       </div>
     </section>
 
     <!-- FEATURED TEACHING -->
     <section class="featured" id="featured">
       <div class="featured-grid">
-
         <div class="featured-text">
           <p class="eyebrow">Featured Teaching</p>
-
           <h2>God Is Love — Part 2</h2>
 
           <p>
@@ -758,16 +851,14 @@
           </p>
 
           <div class="buttons">
-            <a
-              class="btn btn-gold"
-              href="https://www.youtube.com/@ngetichvincent254"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a class="btn btn-gold"
+               href="https://www.youtube.com/@ngetichvincent254"
+               target="_blank" rel="noopener noreferrer">
               Visit YouTube Channel
             </a>
 
-            <a class="btn btn-outline" style="color: var(--navy);" href="#sermons">
+            <a class="btn btn-outline"
+               style="color: var(--navy);" href="#sermons">
               Sermon Library
             </a>
           </div>
@@ -790,7 +881,6 @@
             first video shown.
           </p>
         </div>
-
       </div>
     </section>
 
@@ -810,8 +900,7 @@
           type="search"
           id="sermonSearch"
           placeholder="Search sermon series..."
-          aria-label="Search sermon series"
-        >
+          aria-label="Search sermon series">
 
         <select id="seriesFilter" aria-label="Filter sermon series">
           <option value="all">All Sermon Series</option>
@@ -826,30 +915,22 @@
         <!-- ROMANS -->
         <article class="sermon-card" data-series="romans">
           <h3>Romans</h3>
-
           <p>
             A teaching series exploring the book of Romans, including
             justification by faith, grace, righteousness, and life in Christ.
           </p>
-
           <p><strong>Playlist:</strong> Romans teaching series</p>
 
-          <a
-            class="btn btn-gold"
-            href="https://www.youtube.com/watch?v=MwxFsweFHLQ&list=PLl3yMMVK5j6LbQMYuw-pFKUj9Be-YNjVw"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://www.youtube.com/watch?v=MwxFsweFHLQ&list=PLl3yMMVK5j6LbQMYuw-pFKUj9Be-YNjVw"
+             target="_blank" rel="noopener noreferrer">
             Watch Romans
           </a>
 
-          <a
-            class="btn"
-            style="background: var(--navy); color: white;"
-            href="https://www.youtube-nocookie.com/embed/videoseries?list=PLl3yMMVK5j6LbQMYuw-pFKUj9Be-YNjVw"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn"
+             style="background: var(--navy); color: white;"
+             href="https://www.youtube-nocookie.com/embed/videoseries?list=PLl3yMMVK5j6LbQMYuw-pFKUj9Be-YNjVw"
+             target="_blank" rel="noopener noreferrer">
             Open Player
           </a>
         </article>
@@ -857,30 +938,22 @@
         <!-- BORN AGAIN -->
         <article class="sermon-card" data-series="bornagain">
           <h3>Now That You're Born Again</h3>
-
           <p>
             A series to help believers understand their new life in Christ
             and grow in the knowledge of their identity in Him.
           </p>
-
           <p><strong>Playlist:</strong> Born Again teaching series</p>
 
-          <a
-            class="btn btn-gold"
-            href="https://www.youtube.com/watch?v=4J182-yQRh4&list=PLdo9J89e7RyQ"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://www.youtube.com/watch?v=4J182-yQRh4&list=PLdo9J89e7RyQ"
+             target="_blank" rel="noopener noreferrer">
             Watch Series
           </a>
 
-          <a
-            class="btn"
-            style="background: var(--navy); color: white;"
-            href="https://www.youtube-nocookie.com/embed/videoseries?list=PLdo9J89e7RyQ"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn"
+             style="background: var(--navy); color: white;"
+             href="https://www.youtube-nocookie.com/embed/videoseries?list=PLdo9J89e7RyQ"
+             target="_blank" rel="noopener noreferrer">
             Open Player
           </a>
         </article>
@@ -888,30 +961,22 @@
         <!-- FELLOWSHIP TABLE -->
         <article class="sermon-card" data-series="fellowship">
           <h3>Fellowship Table Teachings</h3>
-
           <p>
             Browse teachings shared through Fellowship Table, including
             messages on the love of God and other biblical topics.
           </p>
-
           <p><strong>Featured message:</strong> God Is Love — Part 2</p>
 
-          <a
-            class="btn btn-gold"
-            href="https://www.youtube.com/watch?v=T6CNWaSyl4o&list=PLl3yMMVK5j6K2VFGCQ6PG9ndKkK46I4W2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://www.youtube.com/watch?v=T6CNWaSyl4o&list=PLl3yMMVK5j6K2VFGCQ6PG9ndKkK46I4W2"
+             target="_blank" rel="noopener noreferrer">
             Watch Teachings
           </a>
 
-          <a
-            class="btn"
-            style="background: var(--navy); color: white;"
-            href="https://www.youtube-nocookie.com/embed/videoseries?list=PLl3yMMVK5j6K2VFGCQ6PG9ndKkK46I4W2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn"
+             style="background: var(--navy); color: white;"
+             href="https://www.youtube-nocookie.com/embed/videoseries?list=PLl3yMMVK5j6K2VFGCQ6PG9ndKkK46I4W2"
+             target="_blank" rel="noopener noreferrer">
             Open Player
           </a>
         </article>
@@ -919,9 +984,87 @@
         <div class="no-results" id="noResults">
           No matching sermon series found. Try another search.
         </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-heading">
+        <p class="eyebrow">Moments and Memories</p>
+        <h2>Fellowship Table Gallery</h2>
+        <p>
+          A collection of moments from Fellowship Table. Click any photo
+          to view it in a larger size.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <div class="gallery-item"
+             role="button" tabindex="0"
+             data-image="fty.jpg.jpeg"
+             data-caption="Fellowship Table">
+          <img src="fty.jpg.jpeg"
+               alt="Fellowship Table gallery photo one"
+               loading="lazy">
+          <div class="gallery-caption">Fellowship Table</div>
+        </div>
+
+        <div class="gallery-item"
+             role="button" tabindex="0"
+             data-image="jyt.jpg.jpeg"
+             data-caption="Fellowship Table">
+          <img src="jyt.jpg.jpeg"
+               alt="Fellowship Table gallery photo two"
+               loading="lazy">
+          <div class="gallery-caption">Fellowship Table</div>
+        </div>
+
+        <div class="gallery-item"
+             role="button" tabindex="0"
+             data-image="jyu.jpg.jpeg"
+             data-caption="Fellowship Table">
+          <img src="jyu.jpg.jpeg"
+               alt="Fellowship Table gallery photo three"
+               loading="lazy">
+          <div class="gallery-caption">Fellowship Table</div>
+        </div>
+
+        <div class="gallery-item"
+             role="button" tabindex="0"
+             data-image="rtr.jpg.jpeg"
+             data-caption="Fellowship Table">
+          <img src="rtr.jpg.jpeg"
+               alt="Fellowship Table gallery photo four"
+               loading="lazy">
+          <div class="gallery-caption">Fellowship Table</div>
+        </div>
+
+        <div class="gallery-item"
+             role="button" tabindex="0"
+             data-image="tdf.jpg.jpeg"
+             data-caption="Fellowship Table">
+          <img src="tdf.jpg.jpeg"
+               alt="Fellowship Table gallery photo five"
+               loading="lazy">
+          <div class="gallery-caption">Fellowship Table</div>
+        </div>
 
       </div>
     </section>
+
+    <!-- ENLARGED GALLERY PHOTO -->
+    <div class="lightbox" id="lightbox"
+         role="dialog" aria-modal="true"
+         aria-label="Enlarged gallery photo">
+      <button class="lightbox-close" id="lightboxClose"
+              aria-label="Close photo viewer">&times;</button>
+
+      <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="Enlarged Fellowship Table photo">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+      </div>
+    </div>
 
     <!-- LEADERSHIP -->
     <section class="leader-section" id="leader">
@@ -935,21 +1078,17 @@
       </div>
 
       <div class="leader-grid">
-
         <div class="leader-photo-wrap">
           <img
             class="leader-photo"
             src="vincent.jpg.jpeg"
             alt="Minister Vincent Ngetich"
-            loading="lazy"
-          >
+            loading="lazy">
         </div>
 
         <div class="leader-info">
           <p class="eyebrow">Fellowship Table</p>
-
           <h2>Vincent Ngetich</h2>
-
           <p class="leader-role">Minister and Bible Teacher</p>
 
           <p>
@@ -964,16 +1103,12 @@
             equipped for the discipleship of the nations.
           </p>
 
-          <a
-            class="btn btn-gold"
-            href="https://www.youtube.com/@ngetichvincent254"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://www.youtube.com/@ngetichvincent254"
+             target="_blank" rel="noopener noreferrer">
             Watch His Teachings
           </a>
         </div>
-
       </div>
     </section>
 
@@ -989,12 +1124,9 @@
       </div>
 
       <div class="fellowship-details">
-
         <article class="detail-card">
           <div class="symbol" aria-hidden="true">◷</div>
-
           <h3>Weekly Sessions</h3>
-
           <p>
             Every Tuesday<br>
             8:00 PM – 9:30 PM<br>
@@ -1004,44 +1136,31 @@
 
         <article class="detail-card">
           <div class="symbol" aria-hidden="true">◎</div>
-
           <h3>Join Google Meet</h3>
-
           <p>
             Join our online fellowship session and participate
             wherever you are.
           </p>
-
-          <a
-            class="btn btn-gold"
-            href="https://meet.google.com/ywz-cgdq-rsr"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://meet.google.com/ywz-cgdq-rsr"
+             target="_blank" rel="noopener noreferrer">
             Join Google Meet
           </a>
         </article>
 
         <article class="detail-card">
           <div class="symbol" aria-hidden="true">♡</div>
-
           <h3>Join WhatsApp</h3>
-
           <p>
             Connect with the fellowship community and stay informed
             about our sessions.
           </p>
-
-          <a
-            class="btn btn-gold"
-            href="https://chat.whatsapp.com/ElW250MXVbE5K78jcBtvob"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://chat.whatsapp.com/ElW250MXVbE5K78jcBtvob"
+             target="_blank" rel="noopener noreferrer">
             Join WhatsApp Group
           </a>
         </article>
-
       </div>
     </section>
 
@@ -1058,7 +1177,6 @@
 
       <div class="contact-panel">
         <h3>Contact</h3>
-
         <p>
           For enquiries and further information, please contact us.
         </p>
@@ -1068,38 +1186,29 @@
         </a>
 
         <div class="buttons" style="justify-content: center;">
-          <a
-            class="btn btn-gold"
-            href="https://wa.me/254711736217"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-gold"
+             href="https://wa.me/254711736217"
+             target="_blank" rel="noopener noreferrer">
             Contact on WhatsApp
           </a>
 
-          <a
-            class="btn"
-            style="background: var(--navy); color: white;"
-            href="https://www.youtube.com/@ngetichvincent254"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn"
+             style="background: var(--navy); color: white;"
+             href="https://www.youtube.com/@ngetichvincent254"
+             target="_blank" rel="noopener noreferrer">
             YouTube Channel
           </a>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- FOOTER -->
   <footer>
     <p class="footer-brand">FELLOWSHIP TABLE</p>
-
     <p>For the Discipleship of the Nations</p>
-
-    <p>
-      Growing in the Word. Walking in Grace.
-    </p>
+    <p>Growing in the Word. Walking in Grace.</p>
 
     <p style="margin-top: 16px;">
       © <span id="year"></span> Fellowship Table. All rights reserved.
@@ -1125,7 +1234,6 @@
     function filterSermons() {
       const searchTerm = searchInput.value.trim().toLowerCase();
       const selectedSeries = seriesFilter.value;
-
       let visibleCount = 0;
 
       sermonCards.forEach(function(card) {
@@ -1154,13 +1262,59 @@
     // Clicking a teaching-series link selects that series.
     document.querySelectorAll("[data-series-link]").forEach(function(link) {
       link.addEventListener("click", function() {
-        const series = link.dataset.seriesLink;
-
-        seriesFilter.value = series;
+        seriesFilter.value = link.dataset.seriesLink;
         searchInput.value = "";
-
         filterSermons();
       });
+    });
+
+    // Gallery photo viewer.
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    function openPhoto(item) {
+      const imagePath = item.dataset.image;
+      const caption = item.dataset.caption;
+      lightboxImage.src = imagePath;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+      lightboxClose.focus();
+    }
+
+    function closePhoto() {
+      lightbox.classList.remove("active");
+      lightboxImage.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".gallery-item").forEach(function(item) {
+      item.addEventListener("click", function() {
+        openPhoto(item);
+      });
+
+      item.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPhoto(item);
+        }
+      });
+    });
+
+    lightboxClose.addEventListener("click", closePhoto);
+
+    lightbox.addEventListener("click", function(event) {
+      if (event.target === lightbox) {
+        closePhoto();
+      }
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && lightbox.classList.contains("active")) {
+        closePhoto();
+      }
     });
   </script>
 
